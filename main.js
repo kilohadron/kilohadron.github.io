@@ -10,7 +10,7 @@ canvas.height = window.innerHeight
 cx = canvas.width/2
 cy = canvas.height/2
 
-class player {
+class playr {
     constructor(x, y, w, h, rot, color) {
         this.x = x
         this.y = y
@@ -25,7 +25,7 @@ class player {
         //needle
         c.fillStyle = 'white'
         c.fillRect(this.x, this.y + this.h * 3 / 8, this.w * 2, this.h / 4)
-        //player
+        //playr
         c.fillStyle = this.color
         c.fillRect(this.x, this.y, this.w, this.h)
         c.resetTransform()
@@ -33,11 +33,11 @@ class player {
 }
 
 //shapes
-var player1 = new player(0,cy,50,25,0,"blue")
-var player2 = new player(1300,cy,50,25,Math.PI,"red")
+var playr1 = new playr(0,cy,50,25,0,"blue")
+var playr2 = new playr(canvas.width-60,cy,50,25,Math.PI,"red")
 //for collision
-//needle1 (player1.x,player1.y+player1.h*3/8,player1.w*2,player1.h/4,player1.rot,"white")
-//needle2 (player2.x,player2.y+player2.h*3/8,player2.w*2,player2.h/4,player2.rot,"white")
+//needle1 (playr1.x,playr1.y+playr1.h*3/8,playr1.w*2,playr1.h/4,playr1.rot,"white")
+//needle2 (playr2.x,playr2.y+playr2.h*3/8,playr2.w*2,playr2.h/4,playr2.rot,"white")
 
 function rotate(h, w, x, y, rotation){
     c.translate(x + w / 2, y + h / 2);
@@ -55,8 +55,8 @@ function newframe() {
     lastframetime = Date.now()
     //delta time
     c.clearRect(0, 0, canvas.width, canvas.height);
-    player1.draw()
-    player2.draw()
+    playr1.draw()
+    playr2.draw()
     movment()
     requestAnimationFrame(newframe)
 }
@@ -71,15 +71,15 @@ addEventListener('keyup', (e) => {
     keys[e.key] = false
 })
 function movment() {
-    var totalspeed = (player1.speed/750)
-    if (keys['w']) if (player1.speed < 750) player1.speed+=250*deltatime 
-    if (keys[' ']) if (Math.abs(player1.speed) > 0) player1.speed = movetoward(player1.speed, 0, 500*deltatime)
-    if (keys['s']) if (player1.speed > -750) player1.speed-=500*deltatime
-    if (keys['d']) player1.rot+=7*totalspeed*deltatime
-    if (keys['a']) player1.rot-=7*totalspeed*deltatime
+    var totalspeed = (playr1.speed/750)
+    if (keys['w']) if (playr1.speed < 750) playr1.speed+=250*deltatime 
+    if (keys[' ']) if (Math.abs(playr1.speed) > 0) playr1.speed = movetoward(playr1.speed, 0, 500*deltatime)
+    if (keys['s']) if (playr1.speed > -1250) playr1.speed-=500*deltatime
+    if (keys['d']) playr1.rot+=7*totalspeed*deltatime
+    if (keys['a']) playr1.rot-=7*totalspeed*deltatime
     //move one step
-    player1.y+=Math.sin(player1.rot)*player1.speed*deltatime
-    player1.x+=Math.cos(player1.rot)*player1.speed*deltatime
+    playr1.y+=Math.sin(playr1.rot)*playr1.speed*deltatime
+    playr1.x+=Math.cos(playr1.rot)*playr1.speed*deltatime
 }
 function movetoward(current, target, speed) {
     var dir = Math.sign(target - current)
