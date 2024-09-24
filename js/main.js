@@ -1,3 +1,8 @@
+onerror = (e, source, line, col, err) => {
+    alert(`error in ${source} on line ${line}, ${err}`)
+}
+
+
 const canvas = document.getElementById("gamecanvas")
 const c = canvas.getContext('2d')
 
@@ -20,10 +25,10 @@ function newframe() {
     lastframetime = Date.now()
     //delta time
     c.clearRect(0, 0, canvas.width, canvas.height)
-    movment()
+    movement()
     playr1.draw()
     playr2.draw()
-    collision()
+    collision(playr1,playr2)
     vertDebug()
     requestAnimationFrame(newframe)
 }
@@ -38,10 +43,27 @@ function drawCirc(x,y,radius){
     c.stroke();
 }
 function vertDebug(){
-    center = {x:playr1.x+playr1.w/2,y:playr1.y+playr1.h/2}
-    drawCirc(center.x,center.y,5)
+    drawCirc(playr1.vert[0].x,playr1.vert[0].y,5)
+    drawCirc(playr1.vert[1].x,playr1.vert[1].y,5)
+    drawCirc(playr1.vert[2].x,playr1.vert[2].y,5)
+    drawCirc(playr1.vert[3].x,playr1.vert[3].y,5)
 }
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,7 +7,7 @@ class playr {
         this.rot = rot
         this.color = color
         this.speed = 0
-        this.center = 0
+        this.center = {x:0,y:0}
         this.vert = []
     }
     draw() {
@@ -29,7 +29,23 @@ function rotate(h, w, x, y, rotation){
 var playr1 = new playr(0,cy,50,25,0,"blue")
 var playr2 = new playr(canvas.width-60,cy,50,25,Math.PI,"red")
 
-
+function movement() {
+    var totalspeed = (playr1.speed/750)
+    if (keys['w']) if (playr1.speed < 750) playr1.speed+=250*deltatime 
+    if (keys[' ']) if (Math.abs(playr1.speed) > 0) playr1.speed = movetoward(playr1.speed, 0, 500*deltatime)
+    if (keys['s']) if (playr1.speed > -1250) playr1.speed-=500*deltatime
+    if (keys['d']) playr1.rot+=7*totalspeed*deltatime
+    if (keys['a']) playr1.rot-=7*totalspeed*deltatime
+    //move one step
+    playr1.y+=Math.sin(playr1.rot)*playr1.speed*deltatime
+    playr1.x+=Math.cos(playr1.rot)*playr1.speed*deltatime
+}
+function movetoward(current, target, speed) {
+    var dir = Math.sign(target - current)
+    var dist = Math.abs(target - current)
+    if (dist <= speed) return target
+    return current + dir * speed
+}
 
 
 //movement scripts
@@ -42,21 +58,3 @@ addEventListener('keydown', (e) => {
 addEventListener('keyup', (e) => {
     keys[e.key] = false
 })
-
-function movetoward(current, target, speed) {
-    var dir = Math.sign(target - current)
-    var dist = Math.abs(target - current)
-    if (dist <= speed) return target
-    return current + dir * speed
-}
-function movment() {
-    var totalspeed = (playr1.speed/750)
-    if (keys['w']) if (playr1.speed < 750) playr1.speed+=250*deltatime 
-    if (keys[' ']) if (Math.abs(playr1.speed) > 0) playr1.speed = movetoward(playr1.speed, 0, 500*deltatime)
-    if (keys['s']) if (playr1.speed > -1250) playr1.speed-=500*deltatime
-    if (keys['d']) playr1.rot+=7*totalspeed*deltatime
-    if (keys['a']) playr1.rot-=7*totalspeed*deltatime
-    //move one step
-    playr1.y+=Math.sin(playr1.rot)*playr1.speed*deltatime
-    playr1.x+=Math.cos(playr1.rot)*playr1.speed*deltatime
-}
