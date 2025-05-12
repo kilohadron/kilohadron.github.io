@@ -1,16 +1,22 @@
 <!DOCTYPE html>
+<html>
 <body>
-<script src="main.js"></script>
-<p id="perSec"></p>
-<div class="upgrades">
-<div class="middle">
-<button id="gen1" class="genOff" style="display: none;" onclick="buyGen1()">15Ꝕ</button>
-</div>
-<button style="display: none" id="genUpgrade" onclick="gen1upgrade()">test</button>
-</div>
-<div class="center">
-<p id="display"></p>
-<button id="clicker" class="circle-btn"><h1>hold</h1></button>
-</div>
-<link rel="stylesheet" href="main.css">
+<canvas id="gamecanvas">html5 canvas not loaded</canvas>
+<script src="js/main.js"></script>
+<script src="js/col.js"></script>
+<script src="js/rect.js"></script>
+<script src="js/game.js"></script>
+<script>setInterval(() => {requestAnimationFrame(main)}, 1000 / 60)</script>
+<style>
+body {background-color: rgb(23, 42, 48);}
+html, body, div, canvas {
+    margin: 0;
+    padding: 0;
+}
+canvas{
+    display: block;
+    image-rendering: pixelated;
+}
+</style>
 </body>
+</html>
