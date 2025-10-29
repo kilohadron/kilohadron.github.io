@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html>
 <body>
-<canvas id="gamecanvas">html5 canvas not loaded</canvas>
-<script src="js/main.js"></script>
-<script src="js/col.js"></script>
-<script src="js/rect.js"></script>
-<script src="js/game.js"></script>
-<script>setInterval(() => {requestAnimationFrame(main)}, 1000 / 60)</script>
+<canvas id="c"></canvas>
 <style>
-body {background-color: rgb(23, 42, 48);}
-html, body, div, canvas {
-    margin: 0;
-    padding: 0;
+canvas {
+    display:block
 }
-canvas{
-    display: block;
-    image-rendering: pixelated;
+body{
+    margin:0
 }
 </style>
+<script src="js/index.js"></script>
+<script src="js/collision.js"></script>
+<script src="js/box.js"></script>
+<script src="js/game.js"></script>
 </body>
 </html>
